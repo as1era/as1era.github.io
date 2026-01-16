@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function initializeVisitorCounter() {
     let totalVisitors = localStorage.getItem('totalVisitorCount');
     
-    if (!totalVisitors || parseInt(totalVisitors) > 172) {
-      totalVisitors = 172;
+    if (!totalVisitors || parseInt(totalVisitors) > 3639) {
+      totalVisitors = 3639;
       localStorage.setItem('totalVisitorCount', totalVisitors);
       localStorage.removeItem('hasVisited'); 
     } else {
@@ -260,4 +260,5 @@ document.addEventListener('DOMContentLoaded', () => {
   resultsButton.addEventListener('touchstart', toggleSkills);
 
   typeWriterStart();
+
 });
