@@ -30,6 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const glitchOverlay = document.querySelector('.glitch-overlay');
   const profileBlock = document.getElementById('profile-block');
   const skillsBlock = document.getElementById('skills-block');
+  const projectsBlock = document.getElementById('projects-block');
+  const bioButton = document.getElementById('bio-button');
+  const projectsButton = document.getElementById('projects-button');
+  const navButtons = document.getElementById('nav-buttons');
   const pythonBar = document.getElementById('python-bar');
   const cppBar = document.getElementById('cpp-bar');
   const csharpBar = document.getElementById('csharp-bar');
@@ -38,6 +42,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const profileContainer = document.querySelector('.profile-container');
   
   const startMessage = "(hiii) zzZZzzZZ";
+
+  function setActiveView(button) {
+    bioButton.classList.toggle('active', button === bioButton);
+    projectsButton.classList.toggle('active', button === projectsButton);
+  }
+
+  function showBioView() {
+    profileBlock.classList.remove('hidden');
+    projectsBlock.classList.add('hidden');
+    skillsBlock.classList.add('hidden');
+    setActiveView(bioButton);
+  }
+
+  function showProjectsView() {
+    profileBlock.classList.add('hidden');
+    skillsBlock.classList.add('hidden');
+    projectsBlock.classList.remove('hidden');
+    setActiveView(projectsButton);
+  }
+
+  bioButton.addEventListener('click', showBioView);
+  bioButton.addEventListener('touchstart', showBioView);
+  projectsButton.addEventListener('click', showProjectsView);
+  projectsButton.addEventListener('touchstart', showProjectsView);
   let startTextContent = '';
   let startIndex = 0;
   let startCursorVisible = true;
@@ -84,6 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function enterSite(e) {
     startScreen.classList.add('hidden');
     topControls.classList.remove('hidden');
+    navButtons.classList.remove('hidden');
+    showBioView();
     
     backgroundMusic.muted = false;
     backgroundMusic.play().catch(err => {
@@ -101,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     typeWriterName();
-    profileBio.textContent = "newgen developer";
+    profileBio.textContent = "roblox&discord developer";
   }
 
   startScreen.addEventListener('click', enterSite);
@@ -167,18 +197,18 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.to(element, {
       rotationX: tiltX,
       rotationY: tiltY,
-      duration: 0.2,
-      ease: 'power1.out',
+      duration: 0.35,
+      ease: 'power2.out',
       transformPerspective: 1000
     });
   }
 
-  [profileBlock, skillsBlock].forEach(block => {
+  [profileBlock, skillsBlock, projectsBlock].forEach(block => {
       block.addEventListener('mouseenter', () => {
         gsap.to(block, { 
-          scale: 1.10, 
-          duration: 0.4, 
-          ease: 'back.out(1.7)' 
+          scale: 1.08, 
+          duration: 0.6, 
+          ease: 'power2.out' 
         });
       });
 
@@ -189,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
           rotationX: 0, 
           rotationY: 0, 
           scale: 1, 
-          duration: 0.6, 
+          duration: 0.8, 
           ease: 'power2.out' 
         });
       };
